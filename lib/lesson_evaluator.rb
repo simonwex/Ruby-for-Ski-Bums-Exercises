@@ -60,7 +60,7 @@ end
 class Object
   def does_this_look_right?
     $lesson_passed ||= false
-    $0 =~ /\d\d_(.*?)#{File::SEPARATOR}\d\d_(.*?)\.rb$/
+    File.expand_path($0) =~ /\d\d_(.*?)#{File::SEPARATOR}\d\d_(.*?)\.rb$/
     Lessons.module_eval(ActiveSupport::Inflector.camelize($1)).send($2.to_sym, self)
   end
 end
